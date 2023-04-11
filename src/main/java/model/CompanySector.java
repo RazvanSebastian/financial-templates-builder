@@ -2,7 +2,8 @@ package model;
 
 public enum CompanySector {
 
-    TELECOMMUNICATION(19.38, 7.86);
+    TELECOMMUNICATION(19.38, 7.86),
+    INDUSTRIAL(19.16, 14.40);
 
     private double PER;
     private double PFCF;

@@ -83,6 +83,9 @@ public class ExcelValuationMetricsSheetInitializer {
         XSSFCell cellValue = sheet.getRow(23).getCell(5);
         XSSFCell cellValuation = sheet.getRow(23).getCell(3);
 
+        XSSFCell cellConditionDetails = sheet.getRow(23).getCell(4);
+        cellConditionDetails.setCellValue(String.format("sector median (%s)", companySector.getPER()));
+
         if (cellValue.getNumericCellValue() < companySector.getPER()) {
             Emoji.EXCELLENT.setEmoji(sheet, cellValuation);
         } else {
@@ -93,6 +96,9 @@ public class ExcelValuationMetricsSheetInitializer {
     public static void initializePFCF(XSSFSheet sheet, CompanySector companySector) {
         XSSFCell cellValue = sheet.getRow(25).getCell(5);
         XSSFCell cellValuation = sheet.getRow(25).getCell(3);
+
+        XSSFCell cellConditionDetails = sheet.getRow(25).getCell(4);
+        cellConditionDetails.setCellValue(String.format("sector median (%s)", companySector.getPFCF()));
 
         if (cellValue.getNumericCellValue() < companySector.getPFCF()) {
             Emoji.EXCELLENT.setEmoji(sheet, cellValuation);
