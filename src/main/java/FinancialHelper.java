@@ -27,6 +27,6 @@ public class FinancialHelper {
         ExcelService excelService = new ExcelService(financialService);
 
         excelService.initializeExcel(Company.COMCAST, CompanySector.TELECOMMUNICATION);
-//        excelService.initializeExcel(Company.UNION_PACIFIC, CompanySector.INDUSTRIAL);
+        excelService.initializeExcel(Company.UNION_PACIFIC, CompanySector.INDUSTRIAL);
     }
 }

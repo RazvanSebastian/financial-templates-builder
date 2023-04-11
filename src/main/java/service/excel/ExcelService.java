@@ -36,11 +36,15 @@ public class ExcelService {
         final XSSFWorkbook workbook = getWorkbook(companyTemplateFile);
 
         initializeFinancialSheet(workbook, company);
+        XSSFFormulaEvaluator.evaluateAllFormulaCells(workbook);
+
         initializeValuationMetricsSheet(workbook, company, companySector);
+        XSSFFormulaEvaluator.evaluateAllFormulaCells(workbook);
 
         initializeWaccSheet(workbook, company);
-        initializeDcfSheet(workbook, company);
+        XSSFFormulaEvaluator.evaluateAllFormulaCells(workbook);
 
+        initializeDcfSheet(workbook, company);
         XSSFFormulaEvaluator.evaluateAllFormulaCells(workbook);
 
         workbook.write(new FileOutputStream(companyTemplateFile));
