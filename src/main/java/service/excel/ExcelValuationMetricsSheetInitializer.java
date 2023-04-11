@@ -107,6 +107,19 @@ public class ExcelValuationMetricsSheetInitializer {
         }
     }
 
+    public static void initializePEG(XSSFSheet sheet) {
+        XSSFCell cellValue = sheet.getRow(27).getCell(5);
+        XSSFCell cellValuation = sheet.getRow(27).getCell(3);
+
+        if (cellValue.getNumericCellValue() <= 1) {
+            Emoji.EXCELLENT.setEmoji(sheet, cellValuation);
+        } else if (cellValue.getNumericCellValue() > 1 && cellValue.getNumericCellValue() <= 1.5) {
+            Emoji.OK.setEmoji(sheet, cellValuation);
+        } else {
+            Emoji.BAD.setEmoji(sheet, cellValuation);
+        }
+    }
+
     public static void initializeCagrFcf5Years(XSSFSheet sheet) {
         XSSFCell cellValue = sheet.getRow(29).getCell(5);
         XSSFCell cellValuation = sheet.getRow(29).getCell(3);

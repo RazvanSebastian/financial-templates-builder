@@ -14,6 +14,8 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 public class CashFlowStatementFileReader {
 
@@ -45,9 +47,10 @@ public class CashFlowStatementFileReader {
             while ((line = bufferedReader.readLine()) != null) {
                 lineIndex++;
 
-                List<String> cashFlowLine = Lists.reverse(
-                        new ArrayList<>(List.of(line.split(DELIMITER)))
-                );
+                List<String> lineList = Stream.of(line.split(DELIMITER)).collect(Collectors.toList());
+                lineList.remove(0);
+
+                List<String> cashFlowLine = Lists.reverse(lineList);
 
                 CASH_FLOW_STATEMENT_INITIALIZERS.get(lineIndex).apply(cashFlowLine.subList(3, cashFlowLine.size()), cashFlowStatementModel);
             }

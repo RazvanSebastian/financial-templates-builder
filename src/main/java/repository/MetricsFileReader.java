@@ -13,6 +13,8 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 public class MetricsFileReader {
 
@@ -29,6 +31,8 @@ public class MetricsFileReader {
         METRICS_INITIALIZERS.put(1, (values, metrics) -> metrics.setROIC(values));
         METRICS_INITIALIZERS.put(2, (values, metrics) -> metrics.setPriceToEarnings(values));
         METRICS_INITIALIZERS.put(3, (values, metrics) -> metrics.setPriceToFCF(values));
+        // First value will be PEG title, 2nd the value of PEG and the rest will be 0
+        METRICS_INITIALIZERS.put(4, (values, metrics) -> metrics.setPEG(values.get(1)));
     }
 
     public MetricsModel read(Company company) throws IOException {
@@ -43,9 +47,9 @@ public class MetricsFileReader {
 
             while ((line = bufferedReader.readLine()) != null) {
                 lineIndex++;
-                List<String> lineList = new ArrayList<>();
-                lineList.add("0");
-                lineList.addAll(List.of(line.split(DELIMITER)));
+
+                List<String> lineList = Stream.of(line.split(DELIMITER)).collect(Collectors.toList());
+                lineList.set(0, "0");
 
                 METRICS_INITIALIZERS.get(lineIndex).apply(lineList, metricsModel);
             }

@@ -40,6 +40,7 @@ public class ExcelFinancialSheetInitializers {
         initializeStatementRow(sheet, financialsModel.getMetricsModel().getROIC(), ROIC_ROW_INDEX);
         initializeStatementRow(sheet, financialsModel.getMetricsModel().getPriceToEarnings(), PER_ROW_INDEX);
         initializeStatementRow(sheet, financialsModel.getMetricsModel().getPriceToFCF(), PFCF_ASSETS_ROW_INDEX);
+        initializeStatementCell(sheet, StatementCellLocation.PEG, financialsModel.getMetricsModel().getPEG());
     }
 
     private static void initializeStatementRow(XSSFSheet sheet, List<String> revenue, int rowType) {
@@ -54,5 +55,43 @@ public class ExcelFinancialSheetInitializers {
 
             cell.setCellValue(Float.parseFloat(revenue.get(lineColIndex)));
         });
+    }
+
+    private static void initializeStatementCell(XSSFSheet sheet, StatementCellLocation cellLocation, String value) {
+        XSSFCell cell = sheet.getRow(cellLocation.getRow()).getCell(cellLocation.getCol());
+
+        XSSFCellStyle cellStyle = cell.getCellStyle();
+        cellStyle.setDataFormat(HSSFDataFormat.getBuiltinFormat("0.00"));
+        cell.setCellStyle(cellStyle);
+
+        cell.setCellValue(Float.parseFloat(value));
+    }
+
+    enum StatementCellLocation {
+        PEG(91, 2);
+
+        private int row;
+        private int col;
+
+        StatementCellLocation(int row, int col) {
+            this.row = row;
+            this.col = col;
+        }
+
+        public int getRow() {
+            return row;
+        }
+
+        public void setRow(int row) {
+            this.row = row;
+        }
+
+        public int getCol() {
+            return col;
+        }
+
+        public void setCol(int col) {
+            this.col = col;
+        }
     }
 }

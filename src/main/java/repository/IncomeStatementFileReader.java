@@ -14,6 +14,8 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 public class IncomeStatementFileReader {
     private static final String DELIMITER = ",";
@@ -46,9 +48,10 @@ public class IncomeStatementFileReader {
             while ((line = bufferedReader.readLine()) != null) {
                 lineIndex++;
 
-                List<String> incomeLine = Lists.reverse(
-                        new ArrayList<>(List.of(line.split(DELIMITER)))
-                );
+                List<String> lineList = Stream.of(line.split(DELIMITER)).collect(Collectors.toList());
+                lineList.remove(0);
+
+                List<String> incomeLine = Lists.reverse(lineList);
 
                 INCOME_STATEMENT_INITIALIZERS.get(lineIndex).apply(incomeLine.subList(3, incomeLine.size()), incomeStatementModel);
             }

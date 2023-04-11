@@ -63,6 +63,7 @@ public class ExcelService {
         // Evaluation
         initializePER(sheet, companySector);
         initializePFCF(sheet, companySector);
+        initializePEG(sheet);
 
         // Profitability
         initializeCagrFcf5Years(sheet);

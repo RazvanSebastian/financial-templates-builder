@@ -14,6 +14,8 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 public class BalanceSheetStatementFileReader {
 
@@ -47,9 +49,10 @@ public class BalanceSheetStatementFileReader {
             while ((line = bufferedReader.readLine()) != null) {
                 lineIndex++;
 
-                List<String> balanceSheetLine = Lists.reverse(
-                        new ArrayList<>(List.of(line.split(DELIMITER)))
-                );
+                List<String> lineList = Stream.of(line.split(DELIMITER)).collect(Collectors.toList());
+                lineList.remove(0);
+
+                List<String> balanceSheetLine = Lists.reverse(lineList);
 
                 BALANCE_SHEET_STATEMENT_INITIALIZERS.get(lineIndex).apply(balanceSheetLine.subList(3, balanceSheetLine.size()), balanceSheetStatementModel);
             }

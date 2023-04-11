@@ -7,6 +7,7 @@ public class MetricsModel {
     private List<String> ROIC;
     private List<String> priceToEarnings;
     private List<String> priceToFCF;
+    private String PEG;
 
     public List<String> getROIC() {
         return ROIC;
@@ -30,5 +31,13 @@ public class MetricsModel {
 
     public void setPriceToFCF(List<String> priceToFCF) {
         this.priceToFCF = priceToFCF;
+    }
+
+    public String getPEG() {
+        return PEG;
+    }
+
+    public void setPEG(String PEG) {
+        this.PEG = PEG;
     }
 }
