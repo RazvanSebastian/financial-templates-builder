@@ -9,8 +9,8 @@
     </option>
     <option name="ignoredPathMasks">
       <list>
-        <option value=".idea/" />
-        <option value="target/" />
+        <option value="/.idea/*" />
+        <option value="/target/*" />
       </list>
     </option>
   </component>
