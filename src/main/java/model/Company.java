@@ -3,7 +3,8 @@ package model;
 public enum Company {
 
     COMCAST("Comcast", "CMCA_Comcast"),
-    UNION_PACIFIC("UnionPacific", "UNP_UnionPacific");
+    UNION_PACIFIC("UnionPacific", "UNP_UnionPacific"),
+    JOHNSON_AND_JOHNSON("JohnsonAndJohnson", "JNJ_JohnsonAndJohnson");
 
     private final String directoryName;
     private final String title;
