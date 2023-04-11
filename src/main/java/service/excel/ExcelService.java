@@ -2,22 +2,25 @@ package service.excel;
 
 import model.Company;
 import model.CompanySector;
-import model.FinancialsModel;
+import model.dcf.DcfModel;
+import model.dcf.WaccModel;
+import model.statement.FinancialsModel;
 import org.apache.commons.io.FileUtils;
 import org.apache.poi.xssf.usermodel.XSSFFormulaEvaluator;
 import org.apache.poi.xssf.usermodel.XSSFSheet;
 import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 import service.FinancialService;
+import service.excel.initializer.DcfSheetInitializer;
+import service.excel.initializer.ExcelWaccSheetInitializer;
 
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.io.IOException;
 
-import static service.excel.ExcelConstants.FINANCIALS_SHEET_NAME;
-import static service.excel.ExcelConstants.VALUATION_METRICS_SHEET_NAME;
-import static service.excel.ExcelFinancialSheetInitializers.*;
-import static service.excel.ExcelValuationMetricsSheetInitializer.*;
+import static service.excel.ExcelConstants.*;
+import static service.excel.initializer.ExcelFinancialSheetInitializers.*;
+import static service.excel.initializer.ExcelValuationMetricsSheetInitializer.*;
 
 public class ExcelService {
 
@@ -33,9 +36,11 @@ public class ExcelService {
         final XSSFWorkbook workbook = getWorkbook(companyTemplateFile);
 
         initializeFinancialSheet(workbook, company);
-        XSSFFormulaEvaluator.evaluateAllFormulaCells(workbook);
-
         initializeValuationMetricsSheet(workbook, company, companySector);
+
+        initializeWaccSheet(workbook, company);
+        initializeDcfSheet(workbook, company);
+
         XSSFFormulaEvaluator.evaluateAllFormulaCells(workbook);
 
         workbook.write(new FileOutputStream(companyTemplateFile));
@@ -80,6 +85,20 @@ public class ExcelService {
         initializeAverageIncrease(sheet);
         initializeCagrDividend5Years(sheet);
         initializeChowder5Years(sheet);
+    }
+
+    private void initializeDcfSheet(XSSFWorkbook workbook, Company company) throws IOException {
+        final DcfModel dcfModel = financialService.readDcf(company);
+        final XSSFSheet sheet = workbook.getSheet(DCF_SHEET_NAME);
+
+        DcfSheetInitializer.initialize(sheet, dcfModel);
+    }
+
+    private void initializeWaccSheet(XSSFWorkbook workbook, Company company) throws IOException {
+        final WaccModel waccModel = financialService.readWacc(company);
+        final XSSFSheet sheet = workbook.getSheet(WACC_SHEET_NAME);
+
+        ExcelWaccSheetInitializer.initialize(sheet, waccModel);
     }
 
     private void initializeFinancialSheet(XSSFWorkbook workbook, Company company) throws IOException {

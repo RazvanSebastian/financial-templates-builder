@@ -1,4 +1,4 @@
-package model;
+package model.statement;
 
 import java.util.List;
 

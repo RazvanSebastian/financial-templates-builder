@@ -4,6 +4,8 @@ public class ExcelConstants {
 
     public static final String VALUATION_METRICS_SHEET_NAME = "Valuation Metrics";
     public static final String FINANCIALS_SHEET_NAME = "Financials";
+    public static final String WACC_SHEET_NAME = "WACC";
+    public static final String DCF_SHEET_NAME = "DCF";
 
     /**
      * Income statement row indexes

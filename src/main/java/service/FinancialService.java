@@ -1,6 +1,9 @@
 package service;
 
-import model.*;
+import model.Company;
+import model.dcf.DcfModel;
+import model.dcf.WaccModel;
+import model.statement.*;
 import repository.*;
 
 import java.io.IOException;
@@ -11,12 +14,16 @@ public class FinancialService {
     private final BalanceSheetStatementFileReader balanceSheetStatementFileReader;
     private final CashFlowStatementFileReader cashFlowStatementFileReader;
     private final MetricsFileReader metricsFileReader;
+    private final WaccFileReader waccFileReader;
+    private final DcfFileReader dcfFileReader;
 
-    public FinancialService(IncomeStatementFileReader incomeStatementFileReader, BalanceSheetStatementFileReader balanceSheetStatementFileReader, CashFlowStatementFileReader cashFlowStatementFileReader, MetricsFileReader metricsFileReader) {
+    public FinancialService(IncomeStatementFileReader incomeStatementFileReader, BalanceSheetStatementFileReader balanceSheetStatementFileReader, CashFlowStatementFileReader cashFlowStatementFileReader, MetricsFileReader metricsFileReader, WaccFileReader waccFileReader, DcfFileReader dcfFileReader) {
         this.incomeStatementFileReader = incomeStatementFileReader;
         this.balanceSheetStatementFileReader = balanceSheetStatementFileReader;
         this.cashFlowStatementFileReader = cashFlowStatementFileReader;
         this.metricsFileReader = metricsFileReader;
+        this.waccFileReader = waccFileReader;
+        this.dcfFileReader = dcfFileReader;
     }
 
     public FinancialsModel readFinancials(Company company) throws IOException {
@@ -31,5 +38,13 @@ public class FinancialService {
                 cashFlowStatementModel,
                 metricsModel
         );
+    }
+
+    public WaccModel readWacc(Company company) throws IOException {
+        return waccFileReader.read(company);
+    }
+
+    public DcfModel readDcf(Company company) throws IOException {
+        return dcfFileReader.read(company);
     }
 }

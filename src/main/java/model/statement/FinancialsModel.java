@@ -1,4 +1,4 @@
-package model;
+package model.statement;
 
 public class FinancialsModel {
 
