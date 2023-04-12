@@ -6,6 +6,8 @@ public class ExcelConstants {
     public static final String FINANCIALS_SHEET_NAME = "Financials";
     public static final String WACC_SHEET_NAME = "WACC";
     public static final String DCF_SHEET_NAME = "DCF";
+    public static final String GRAHAM_SHEET_NAME = "Graham";
+    public static final String DDM_SHEET_NAME = "DDM";
 
     /**
      * Income statement row indexes

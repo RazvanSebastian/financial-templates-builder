@@ -24,12 +24,29 @@
 2. Cash flow from operating activites
 3. Dividiends paid
 
-### Rules:
+##### Rules:
 - Copy from newst year to oldest one. 
 - Replace new line between values with comma.
 
-# Metrics (https://www.morningstar.com/)
+### Metrics file (https://www.morningstar.com/)
 
 1. ROIC
 2. Price to earnings
 3. Price to FCF
+4. PEG (yahoo finance)
+
+### WACC file (https://finance.yahoo.com)
+1. MarketCap
+2. CurrentLiabilities
+3. NonCurrentLiabilities
+4. InterestExpenses
+5. PretaxIncome
+6. TaxProvision
+7. Beta
+
+### DCF file
+1. RevenueGrowth
+2. EbidtaMultiple (seeking-alpha)
+3. EbidtaGrowthRate (seeking-alpha)
+4. NumberOfShares (10k)
+5. RevenueEstimations (seeking-alpha)

@@ -1,56 +1,47 @@
 package repository;
 
 import model.Company;
+import model.CompanySector;
 import model.dcf.WaccModel;
-import util.BiSupplier;
+import util.BiConsumer;
 
-import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStream;
-import java.io.InputStreamReader;
-import java.nio.charset.StandardCharsets;
 import java.util.HashMap;
 import java.util.Map;
 
+import static repository.FileReaderUtil.DELIMITER;
+import static repository.FileReaderUtil.getInputStreamCompanyFile;
+
 public class WaccFileReader implements FileReader<WaccModel> {
-    private static final String DELIMITER = ",";
+    private static final String FILE_NAME = "wacc.txt";
 
     /**
      * Key - row index
      * Value - list of values related to wacc attribute
      */
-    private static final Map<Integer, BiSupplier<String, WaccModel>> WACC_INITIALIZERS;
+    private static final Map<Integer, BiConsumer<String, WaccModel>> WACC_INITIALIZERS;
 
     static {
         WACC_INITIALIZERS = new HashMap<>();
-        WACC_INITIALIZERS.put(1, (value, waccModel) -> waccModel.setMarketCap(value));
-        WACC_INITIALIZERS.put(2, (value, waccModel) -> waccModel.setCurrentLiabilities(value));
-        WACC_INITIALIZERS.put(3, (value, waccModel) -> waccModel.setNonCurrentLiabilities(value));
-        WACC_INITIALIZERS.put(4, (value, waccModel) -> waccModel.setInterestExpenses(value));
-        WACC_INITIALIZERS.put(5, (value, waccModel) -> waccModel.setPretaxIncome(value));
-        WACC_INITIALIZERS.put(6, (value, waccModel) -> waccModel.setTaxProvision(value));
-        WACC_INITIALIZERS.put(7, (value, waccModel) -> waccModel.setBeta(value));
+        WACC_INITIALIZERS.put(1, (line, waccModel) -> waccModel.setMarketCap(line.split(DELIMITER)[1]));
+        WACC_INITIALIZERS.put(2, (line, waccModel) -> waccModel.setCurrentLiabilities(line.split(DELIMITER)[1]));
+        WACC_INITIALIZERS.put(3, (line, waccModel) -> waccModel.setNonCurrentLiabilities(line.split(DELIMITER)[1]));
+        WACC_INITIALIZERS.put(4, (line, waccModel) -> waccModel.setInterestExpenses(line.split(DELIMITER)[1]));
+        WACC_INITIALIZERS.put(5, (line, waccModel) -> waccModel.setPretaxIncome(line.split(DELIMITER)[1]));
+        WACC_INITIALIZERS.put(6, (line, waccModel) -> waccModel.setTaxProvision(line.split(DELIMITER)[1]));
+        WACC_INITIALIZERS.put(7, (line, waccModel) -> waccModel.setBeta(line.split(DELIMITER)[1]));
     }
 
     @Override
-    public WaccModel read(Company company) throws IOException {
-        InputStream inputStream = getClass().getClassLoader().getResourceAsStream("companies/" + company.getDirectoryName() + "/wacc.txt");
+    public WaccModel read(Company company, CompanySector companySector) throws IOException {
+        final InputStream inputStream = getInputStreamCompanyFile(company, companySector, getFileName());
+        final WaccModel waccModel = new WaccModel();
+        return FileReaderUtil.mapFileToModel(inputStream, waccModel, WACC_INITIALIZERS);
+    }
 
-        try (InputStreamReader inputStreamReader = new InputStreamReader(inputStream, StandardCharsets.UTF_8)) {
-            final WaccModel waccModel = new WaccModel();
-
-            BufferedReader bufferedReader = new BufferedReader(inputStreamReader);
-
-            String line;
-            int lineIndex = 0;
-
-            while ((line = bufferedReader.readLine()) != null) {
-                lineIndex++;
-                String value = line.split(DELIMITER)[1];
-
-                WACC_INITIALIZERS.get(lineIndex).apply(value, waccModel);
-            }
-            return waccModel;
-        }
+    @Override
+    public String getFileName() {
+        return FILE_NAME;
     }
 }

@@ -1,0 +1,4 @@
+DividendPerShare,XXX
+ConservativeGrow,XXX
+NormalGrow,XXX
+HighGrow,XXX

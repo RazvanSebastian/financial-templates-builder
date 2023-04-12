@@ -15,6 +15,8 @@ public class FinancialHelper {
         MetricsFileReader metricsFileReader = new MetricsFileReader();
         WaccFileReader waccFileReader = new WaccFileReader();
         DcfFileReader dcfFileReader = new DcfFileReader();
+        GrahamFileReader grahamFileReader = new GrahamFileReader();
+        DdmFileReader ddmFileReader = new DdmFileReader();
 
         FinancialService financialService = new FinancialService(
                 incomeStatementFileReader,
@@ -22,12 +24,14 @@ public class FinancialHelper {
                 cashFlowStatementFileReader,
                 metricsFileReader,
                 waccFileReader,
-                dcfFileReader);
+                dcfFileReader,
+                grahamFileReader,
+                ddmFileReader);
 
         ExcelService excelService = new ExcelService(financialService);
 
-//        excelService.initializeExcel(Company.COMCAST, CompanySector.TELECOMMUNICATION);
+        excelService.initializeExcel(Company.COMCAST, CompanySector.COMMUNICATIONS);
 //        excelService.initializeExcel(Company.UNION_PACIFIC, CompanySector.INDUSTRIAL);
-        excelService.initializeExcel(Company.JOHNSON_AND_JOHNSON, CompanySector.PHARMA);
+//        excelService.initializeExcel(Company.JOHNSON_AND_JOHNSON, CompanySector.PHARMA);
     }
 }

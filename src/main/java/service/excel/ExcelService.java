@@ -2,6 +2,8 @@ package service.excel;
 
 import model.Company;
 import model.CompanySector;
+import model.DdmDataModel;
+import model.GrahamDataModel;
 import model.dcf.DcfModel;
 import model.dcf.WaccModel;
 import model.statement.FinancialsModel;
@@ -10,7 +12,9 @@ import org.apache.poi.xssf.usermodel.XSSFFormulaEvaluator;
 import org.apache.poi.xssf.usermodel.XSSFSheet;
 import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 import service.FinancialService;
-import service.excel.initializer.DcfSheetInitializer;
+import service.excel.initializer.ExcelDcfSheetInitializer;
+import service.excel.initializer.ExcelDdmSheetInitializer;
+import service.excel.initializer.ExcelGrahamSheetInitializer;
 import service.excel.initializer.ExcelWaccSheetInitializer;
 
 import java.io.File;
@@ -32,19 +36,25 @@ public class ExcelService {
     }
 
     public void initializeExcel(Company company, CompanySector companySector) throws IOException {
-        final File companyTemplateFile = createOutputCompanyTemplate(company);
+        final File companyTemplateFile = createOutputCompanyTemplate(company, companySector);
         final XSSFWorkbook workbook = getWorkbook(companyTemplateFile);
 
-        initializeFinancialSheet(workbook, company);
+        initializeFinancialSheet(workbook, company, companySector);
         XSSFFormulaEvaluator.evaluateAllFormulaCells(workbook);
 
         initializeValuationMetricsSheet(workbook, company, companySector);
         XSSFFormulaEvaluator.evaluateAllFormulaCells(workbook);
 
-        initializeWaccSheet(workbook, company);
+        initializeWaccSheet(workbook, company, companySector);
         XSSFFormulaEvaluator.evaluateAllFormulaCells(workbook);
 
-        initializeDcfSheet(workbook, company);
+        initializeDcfSheet(workbook, company, companySector);
+        XSSFFormulaEvaluator.evaluateAllFormulaCells(workbook);
+
+        initializeGrahamSheet(workbook, company, companySector);
+        XSSFFormulaEvaluator.evaluateAllFormulaCells(workbook);
+
+        initializeDdmModel(workbook, company, companySector);
         XSSFFormulaEvaluator.evaluateAllFormulaCells(workbook);
 
         workbook.write(new FileOutputStream(companyTemplateFile));
@@ -91,24 +101,24 @@ public class ExcelService {
         initializeChowder5Years(sheet);
     }
 
-    private void initializeDcfSheet(XSSFWorkbook workbook, Company company) throws IOException {
-        final DcfModel dcfModel = financialService.readDcf(company);
+    private void initializeDcfSheet(XSSFWorkbook workbook, Company company, CompanySector companySector) throws IOException {
+        final DcfModel dcfModel = financialService.readDcf(company, companySector);
         final XSSFSheet sheet = workbook.getSheet(DCF_SHEET_NAME);
 
-        DcfSheetInitializer.initialize(sheet, dcfModel);
+        ExcelDcfSheetInitializer.initialize(sheet, dcfModel);
     }
 
-    private void initializeWaccSheet(XSSFWorkbook workbook, Company company) throws IOException {
-        final WaccModel waccModel = financialService.readWacc(company);
+    private void initializeWaccSheet(XSSFWorkbook workbook, Company company, CompanySector companySector) throws IOException {
+        final WaccModel waccModel = financialService.readWacc(company, companySector);
         final XSSFSheet sheet = workbook.getSheet(WACC_SHEET_NAME);
 
         ExcelWaccSheetInitializer.initialize(sheet, waccModel);
     }
 
-    private void initializeFinancialSheet(XSSFWorkbook workbook, Company company) throws IOException {
+    private void initializeFinancialSheet(XSSFWorkbook workbook, Company company, CompanySector companySector) throws IOException {
         final XSSFSheet sheet = workbook.getSheet(FINANCIALS_SHEET_NAME);
 
-        final FinancialsModel financialsModel = financialService.readFinancials(company);
+        final FinancialsModel financialsModel = financialService.readFinancials(company, companySector);
 
         initializeIncomeStatementRows(sheet, financialsModel);
         initializeBalanceSheetRows(sheet, financialsModel);
@@ -116,9 +126,23 @@ public class ExcelService {
         initializeMetricsRows(sheet, financialsModel);
     }
 
-    private File createOutputCompanyTemplate(Company company) throws IOException {
+    private void initializeGrahamSheet(XSSFWorkbook workbook, Company company, CompanySector companySector) throws IOException {
+        final XSSFSheet sheet = workbook.getSheet(GRAHAM_SHEET_NAME);
+        final GrahamDataModel grahamDataModel = financialService.readGraham(company, companySector);
+
+        ExcelGrahamSheetInitializer.initialize(sheet, grahamDataModel);
+    }
+
+    private void initializeDdmModel(XSSFWorkbook workbook, Company company, CompanySector companySector) throws IOException {
+        final XSSFSheet sheet = workbook.getSheet(DDM_SHEET_NAME);
+        final DdmDataModel ddmDataModel = financialService.readDdm(company, companySector);
+
+        ExcelDdmSheetInitializer.initialize(sheet, ddmDataModel);
+    }
+
+    private File createOutputCompanyTemplate(Company company, CompanySector companySector) throws IOException {
         File template = new File(getClass().getClassLoader().getResource("companies/template.xlsx").getFile());
-        File destination = new File(getClass().getClassLoader().getResource("companies/" + company.getDirectoryName()).getFile() + "/" + company.getTitle() + ".xlsx");
+        File destination = new File(getClass().getClassLoader().getResource("companies/" + companySector.getDirectoryName() + "/" + company.getDirectoryName()).getFile() + "/" + company.getTitle() + ".xlsx");
         FileUtils.copyFile(template, destination);
         return destination;
     }

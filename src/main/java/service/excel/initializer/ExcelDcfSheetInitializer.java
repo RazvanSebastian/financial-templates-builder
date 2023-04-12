@@ -4,9 +4,9 @@ import model.dcf.DcfModel;
 import org.apache.poi.xssf.usermodel.XSSFCell;
 import org.apache.poi.xssf.usermodel.XSSFSheet;
 
-import static service.excel.initializer.DcfSheetInitializer.DcfDataCellLocation.*;
+import static service.excel.initializer.ExcelDcfSheetInitializer.DcfDataCellLocation.*;
 
-public class DcfSheetInitializer {
+public class ExcelDcfSheetInitializer {
 
     public static void initialize(XSSFSheet sheet, DcfModel dcfModel) {
         initializePercentageCellData(sheet, REVENUE_GROWTH, dcfModel.getRevenueGrowth());
@@ -25,7 +25,7 @@ public class DcfSheetInitializer {
 
     private static void initializePercentageCellData(XSSFSheet xssfSheet, DcfDataCellLocation cellLocation, String value) {
         XSSFCell cell = xssfSheet.getRow(cellLocation.getRow()).getCell(cellLocation.getCol());
-        cell.setCellValue(Float.parseFloat(value)/100);
+        cell.setCellValue(Float.parseFloat(value) / 100);
     }
 
     enum DcfDataCellLocation {

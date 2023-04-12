@@ -1,60 +1,54 @@
 package repository;
 
 import model.Company;
+import model.CompanySector;
 import model.statement.MetricsModel;
-import util.BiSupplier;
+import util.BiConsumer;
 
-import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStream;
-import java.io.InputStreamReader;
-import java.nio.charset.StandardCharsets;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
-public class MetricsFileReader implements FileReader<MetricsModel> {
+import static repository.FileReaderUtil.DELIMITER;
+import static repository.FileReaderUtil.getInputStreamCompanyFile;
 
-    private static final String DELIMITER = ",";
+public class MetricsFileReader implements FileReader<MetricsModel> {
+    private static final String FILE_NAME = "metrics.txt";
 
     /**
      * Key - row index
      * Value - list of values related to income attribute
      */
-    private static final Map<Integer, BiSupplier<List<String>, MetricsModel>> METRICS_INITIALIZERS;
+    private static final Map<Integer, BiConsumer<String, MetricsModel>> METRICS_INITIALIZERS;
 
     static {
         METRICS_INITIALIZERS = new HashMap<>();
-        METRICS_INITIALIZERS.put(1, (values, metrics) -> metrics.setROIC(values));
-        METRICS_INITIALIZERS.put(2, (values, metrics) -> metrics.setPriceToEarnings(values));
-        METRICS_INITIALIZERS.put(3, (values, metrics) -> metrics.setPriceToFCF(values));
+        METRICS_INITIALIZERS.put(1, (line, metrics) -> metrics.setROIC(getLineList(line)));
+        METRICS_INITIALIZERS.put(2, (line, metrics) -> metrics.setPriceToEarnings(getLineList(line)));
+        METRICS_INITIALIZERS.put(3, (line, metrics) -> metrics.setPriceToFCF(getLineList(line)));
         // First value will be PEG title, 2nd the value of PEG and the rest will be 0
-        METRICS_INITIALIZERS.put(4, (values, metrics) -> metrics.setPEG(values.get(1)));
+        METRICS_INITIALIZERS.put(4, (line, metrics) -> metrics.setPEG(getLineList(line).get(1)));
     }
 
     @Override
-    public MetricsModel read(Company company) throws IOException {
-        InputStream inputStream = getClass().getClassLoader().getResourceAsStream("companies/" + company.getDirectoryName() + "/metrics.txt");
-        try (InputStreamReader inputStreamReader = new InputStreamReader(inputStream, StandardCharsets.UTF_8)) {
-            final MetricsModel metricsModel = new MetricsModel();
+    public MetricsModel read(Company company, CompanySector companySector) throws IOException {
+        final InputStream inputStream = getInputStreamCompanyFile(company, companySector, getFileName());
+        final MetricsModel metricsModel = new MetricsModel();
+        return FileReaderUtil.mapFileToModel(inputStream, metricsModel, METRICS_INITIALIZERS);
+    }
 
-            BufferedReader bufferedReader = new BufferedReader(inputStreamReader);
+    @Override
+    public String getFileName() {
+        return FILE_NAME;
+    }
 
-            String line;
-            int lineIndex = 0;
-
-            while ((line = bufferedReader.readLine()) != null) {
-                lineIndex++;
-
-                List<String> lineList = Stream.of(line.split(DELIMITER)).collect(Collectors.toList());
-                lineList.set(0, "0");
-
-                METRICS_INITIALIZERS.get(lineIndex).apply(lineList, metricsModel);
-            }
-
-            return metricsModel;
-        }
+    private static List<String> getLineList(String line) {
+        List<String> lineList = Stream.of(line.split(DELIMITER)).collect(Collectors.toList());
+        lineList.set(0, "0");
+        return lineList;
     }
 }

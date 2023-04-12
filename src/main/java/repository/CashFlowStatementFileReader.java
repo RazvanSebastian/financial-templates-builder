@@ -1,30 +1,26 @@
 package repository;
 
-import com.google.common.collect.Lists;
 import model.Company;
+import model.CompanySector;
 import model.statement.CashFlowStatementModel;
-import util.BiSupplier;
+import util.BiConsumer;
 
-import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStream;
-import java.io.InputStreamReader;
-import java.nio.charset.StandardCharsets;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-import java.util.stream.Collectors;
-import java.util.stream.Stream;
+
+import static repository.FileReaderUtil.getInputStreamCompanyFile;
 
 public class CashFlowStatementFileReader implements FileReader<CashFlowStatementModel> {
-
-    private static final String DELIMITER = ",";
+    private static final String FILE_NAME = "cashflow_statement.txt";
 
     /**
      * Key - row index
      * Value - list of values related to cash flow attribute
      */
-    private static final Map<Integer, BiSupplier<List<String>, CashFlowStatementModel>> CASH_FLOW_STATEMENT_INITIALIZERS;
+    private static final Map<Integer, BiConsumer<List<String>, CashFlowStatementModel>> CASH_FLOW_STATEMENT_INITIALIZERS;
 
     static {
         CASH_FLOW_STATEMENT_INITIALIZERS = new HashMap<>();
@@ -34,28 +30,14 @@ public class CashFlowStatementFileReader implements FileReader<CashFlowStatement
     }
 
     @Override
-    public CashFlowStatementModel read(Company company) throws IOException {
-        InputStream inputStream = getClass().getClassLoader().getResourceAsStream("companies/" + company.getDirectoryName() + "/cashflow_statement.txt");
-        try (InputStreamReader inputStreamReader = new InputStreamReader(inputStream, StandardCharsets.UTF_8)) {
-            final CashFlowStatementModel cashFlowStatementModel = new CashFlowStatementModel();
+    public CashFlowStatementModel read(Company company, CompanySector companySector) throws IOException {
+        final InputStream inputStream = getInputStreamCompanyFile(company, companySector, getFileName());
+        final CashFlowStatementModel cashFlowStatementModel = new CashFlowStatementModel();
+        return FileReaderUtil.mapStatementFileToModel(inputStream, cashFlowStatementModel, CASH_FLOW_STATEMENT_INITIALIZERS);
+    }
 
-            BufferedReader bufferedReader = new BufferedReader(inputStreamReader);
-
-            String line;
-            int lineIndex = 0;
-
-            while ((line = bufferedReader.readLine()) != null) {
-                lineIndex++;
-
-                List<String> lineList = Stream.of(line.split(DELIMITER)).collect(Collectors.toList());
-                lineList.remove(0);
-
-                List<String> cashFlowLine = Lists.reverse(lineList);
-
-                CASH_FLOW_STATEMENT_INITIALIZERS.get(lineIndex).apply(cashFlowLine.subList(3, cashFlowLine.size()), cashFlowStatementModel);
-            }
-
-            return cashFlowStatementModel;
-        }
+    @Override
+    public String getFileName() {
+        return FILE_NAME;
     }
 }
