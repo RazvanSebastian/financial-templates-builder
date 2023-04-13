@@ -4,7 +4,8 @@ public enum Company {
 
     COMCAST("Comcast", "CMCA_Comcast"),
     UNION_PACIFIC("UnionPacific", "UNP_UnionPacific"),
-    JOHNSON_AND_JOHNSON("JohnsonAndJohnson", "JNJ_JohnsonAndJohnson");
+    JOHNSON_AND_JOHNSON("JohnsonAndJohnson", "JNJ_JohnsonAndJohnson"),
+    TYSON_FOODS("TysonFoods", "TSN_TysonFoods");
 
     private final String directoryName;
     private final String title;

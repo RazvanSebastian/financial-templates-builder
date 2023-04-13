@@ -23,7 +23,6 @@ public class ExcelFinancialSheetInitializers {
     }
 
     public static void initializeBalanceSheetRows(XSSFSheet sheet, FinancialsModel financialsModel) {
-        initializeStatementRow(sheet, financialsModel.getBalanceSheetStatementModel().getPPE(), PPE_ROW_INDEX);
         initializeStatementRow(sheet, financialsModel.getBalanceSheetStatementModel().getCurrentAssets(), CURRENT_ASSETS_ROW_INDEX);
         initializeStatementRow(sheet, financialsModel.getBalanceSheetStatementModel().getNonCurrentAssets(), NON_CURRENT_ASSETS_ROW_INDEX);
         initializeStatementRow(sheet, financialsModel.getBalanceSheetStatementModel().getCurrentLiabilities(), CURRENT_LIABILITIES_ROW_INDEX);
@@ -31,8 +30,7 @@ public class ExcelFinancialSheetInitializers {
     }
 
     public static void initializeCashFlowStatementRows(XSSFSheet sheet, FinancialsModel financialsModel) {
-        initializeStatementRow(sheet, financialsModel.getCashFlowStatementModel().getDepreciationAmortization(), DEPRECIATION_AMORTIZATION_ROW_INDEX);
-        initializeStatementRow(sheet, financialsModel.getCashFlowStatementModel().getCashFlowFromOperatingActivities(), CASH_FLOW_OPERATING_ACTIVITIES_ROW_INDEX);
+        initializeStatementRow(sheet, financialsModel.getCashFlowStatementModel().getFreeCashFlow(), FREE_CASH_FLOW_ROW_INDEX);
         initializeStatementRow(sheet, financialsModel.getCashFlowStatementModel().getDividendsPaid(), DIVIDENDS_PAID_ROW_INDEX);
     }
 
@@ -43,7 +41,7 @@ public class ExcelFinancialSheetInitializers {
         initializeStatementCell(sheet, StatementCellLocation.PEG, financialsModel.getMetricsModel().getPEG());
     }
 
-    private static void initializeStatementRow(XSSFSheet sheet, List<String> revenue, int rowType) {
+    private static void initializeStatementRow(XSSFSheet sheet, List<String> statementRow, int rowType) {
         XSSFRow row = sheet.getRow(rowType);
         IntStream.range(0, 11).forEach(lineColIndex -> {
             int cellIndex = lineColIndex + 2;
@@ -53,7 +51,7 @@ public class ExcelFinancialSheetInitializers {
             cellStyle.setDataFormat(HSSFDataFormat.getBuiltinFormat("0.00"));
             cell.setCellStyle(cellStyle);
 
-            cell.setCellValue(Float.parseFloat(revenue.get(lineColIndex)));
+            cell.setCellValue(Float.parseFloat(statementRow.get(lineColIndex)));
         });
     }
 
@@ -68,7 +66,7 @@ public class ExcelFinancialSheetInitializers {
     }
 
     enum StatementCellLocation {
-        PEG(91, 2);
+        PEG(81, 2);
 
         private int row;
         private int col;

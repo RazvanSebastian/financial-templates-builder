@@ -24,9 +24,8 @@ public class CashFlowStatementFileReader implements FileReader<CashFlowStatement
 
     static {
         CASH_FLOW_STATEMENT_INITIALIZERS = new HashMap<>();
-        CASH_FLOW_STATEMENT_INITIALIZERS.put(1, (values, cashFlowStatement) -> cashFlowStatement.setDepreciationAmortization(values));
-        CASH_FLOW_STATEMENT_INITIALIZERS.put(2, (values, cashFlowStatement) -> cashFlowStatement.setCashFlowFromOperatingActivities(values));
-        CASH_FLOW_STATEMENT_INITIALIZERS.put(3, (values, cashFlowStatement) -> cashFlowStatement.setDividendsPaid(values));
+        CASH_FLOW_STATEMENT_INITIALIZERS.put(1, (values, cashFlowStatement) -> cashFlowStatement.setFreeCashFlow(values));
+        CASH_FLOW_STATEMENT_INITIALIZERS.put(2, (values, cashFlowStatement) -> cashFlowStatement.setDividendsPaid(values));
     }
 
     @Override

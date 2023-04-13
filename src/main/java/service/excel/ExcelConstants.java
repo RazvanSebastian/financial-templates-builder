@@ -21,23 +21,21 @@ public class ExcelConstants {
     /**
      * Cash Flow statement row indexes
      */
-    public static final Integer DEPRECIATION_AMORTIZATION_ROW_INDEX = 19;
-    public static final Integer CASH_FLOW_OPERATING_ACTIVITIES_ROW_INDEX = 21;
-    public static final Integer DIVIDENDS_PAID_ROW_INDEX = 30;
+    public static final Integer FREE_CASH_FLOW_ROW_INDEX = 19;
+    public static final Integer DIVIDENDS_PAID_ROW_INDEX = 22;
 
     /**
      * Balance sheet statement row indexes
      */
-    public static final Integer PPE_ROW_INDEX = 35;
-    public static final Integer CURRENT_ASSETS_ROW_INDEX = 37;
-    public static final Integer NON_CURRENT_ASSETS_ROW_INDEX = 40;
-    public static final Integer CURRENT_LIABILITIES_ROW_INDEX = 45;
-    public static final Integer NON_CURRENT_LIABILITIES_ROW_INDEX = 48;
+    public static final Integer CURRENT_ASSETS_ROW_INDEX = 27;
+    public static final Integer NON_CURRENT_ASSETS_ROW_INDEX = 30;
+    public static final Integer CURRENT_LIABILITIES_ROW_INDEX = 35;
+    public static final Integer NON_CURRENT_LIABILITIES_ROW_INDEX = 38;
 
     /**
      * Metrics row indexes
      */
-    public static final Integer ROIC_ROW_INDEX = 86;
-    public static final Integer PER_ROW_INDEX = 89;
-    public static final Integer PFCF_ASSETS_ROW_INDEX = 90;
+    public static final Integer ROIC_ROW_INDEX = 76;
+    public static final Integer PER_ROW_INDEX = 79;
+    public static final Integer PFCF_ASSETS_ROW_INDEX = 80;
 }

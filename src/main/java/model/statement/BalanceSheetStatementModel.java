@@ -4,19 +4,10 @@ import java.util.List;
 
 public class BalanceSheetStatementModel {
 
-    private List<String> PPE;
     private List<String> currentAssets;
     private List<String> nonCurrentAssets;
     private List<String> currentLiabilities;
     private List<String> nonCurrentLiabilities;
-
-    public List<String> getPPE() {
-        return PPE;
-    }
-
-    public void setPPE(List<String> PPE) {
-        this.PPE = PPE;
-    }
 
     public List<String> getCurrentAssets() {
         return currentAssets;

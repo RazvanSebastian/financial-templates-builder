@@ -33,9 +33,9 @@ public class ExcelDcfSheetInitializer {
         EBIDTA_MULTIPLE(8, 2),
         EBIDTA_GROWTH_RATE(9, 2),
         NUMBER_OF_SHARES(10, 2),
-        REVENUE_ESTIMATION_1(42, 2),
-        REVENUE_ESTIMATION_2(42, 3),
-        REVENUE_ESTIMATION_3(42, 4);
+        REVENUE_ESTIMATION_1(36, 2),
+        REVENUE_ESTIMATION_2(36, 3),
+        REVENUE_ESTIMATION_3(36, 4);
 
         private int row;
         private int col;

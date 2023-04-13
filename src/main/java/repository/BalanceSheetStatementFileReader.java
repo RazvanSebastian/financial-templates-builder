@@ -24,11 +24,10 @@ public class BalanceSheetStatementFileReader implements FileReader<BalanceSheetS
 
     static {
         BALANCE_SHEET_STATEMENT_INITIALIZERS = new HashMap<>();
-        BALANCE_SHEET_STATEMENT_INITIALIZERS.put(1, (values, balanceSheetStatement) -> balanceSheetStatement.setPPE(values));
-        BALANCE_SHEET_STATEMENT_INITIALIZERS.put(2, (values, balanceSheetStatement) -> balanceSheetStatement.setCurrentAssets(values));
-        BALANCE_SHEET_STATEMENT_INITIALIZERS.put(3, (values, balanceSheetStatement) -> balanceSheetStatement.setNonCurrentAssets(values));
-        BALANCE_SHEET_STATEMENT_INITIALIZERS.put(4, (values, balanceSheetStatement) -> balanceSheetStatement.setCurrentLiabilities(values));
-        BALANCE_SHEET_STATEMENT_INITIALIZERS.put(5, (values, balanceSheetStatement) -> balanceSheetStatement.setNonCurrentLiabilities(values));
+        BALANCE_SHEET_STATEMENT_INITIALIZERS.put(1, (values, balanceSheetStatement) -> balanceSheetStatement.setCurrentAssets(values));
+        BALANCE_SHEET_STATEMENT_INITIALIZERS.put(2, (values, balanceSheetStatement) -> balanceSheetStatement.setNonCurrentAssets(values));
+        BALANCE_SHEET_STATEMENT_INITIALIZERS.put(3, (values, balanceSheetStatement) -> balanceSheetStatement.setCurrentLiabilities(values));
+        BALANCE_SHEET_STATEMENT_INITIALIZERS.put(4, (values, balanceSheetStatement) -> balanceSheetStatement.setNonCurrentLiabilities(values));
     }
 
     @Override

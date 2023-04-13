@@ -4,7 +4,8 @@ public enum CompanySector {
 
     COMMUNICATIONS(19.38, 7.86, "communications"),
     INDUSTRIAL(19.16, 14.40, "industrial"),
-    PHARMA(25.27, 18.34, "pharma");
+    PHARMA(25.27, 18.34, "pharma"),
+    CONSUMER_DEFENSE(22.41, 16.17, "consumer_defense");
 
     private double PER;
     private double PFCF;
