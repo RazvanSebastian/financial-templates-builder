@@ -1,2 +1,2 @@
-EPS,XXX
-EpsGrowthRate,XXX
+EPS,11.21
+EpsGrowthRate,9

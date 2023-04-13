@@ -49,12 +49,9 @@ public class ExcelService {
         XSSFFormulaEvaluator.evaluateAllFormulaCells(workbook);
 
         initializeDcfSheet(workbook, company, companySector);
-        XSSFFormulaEvaluator.evaluateAllFormulaCells(workbook);
-
         initializeGrahamSheet(workbook, company, companySector);
-        XSSFFormulaEvaluator.evaluateAllFormulaCells(workbook);
-
         initializeDdmModel(workbook, company, companySector);
+
         XSSFFormulaEvaluator.evaluateAllFormulaCells(workbook);
 
         workbook.write(new FileOutputStream(companyTemplateFile));
