@@ -1,0 +1,4 @@
+DividendPerShare,0
+ConservativeGrow,0
+NormalGrow,0
+HighGrow,0

@@ -1,0 +1,7 @@
+MarketCap,1350
+CurrentLiabilities,69300000
+NonCurrentLiabilities,39820000
+InterestExpenses,357000
+PretaxIncome,71328000
+TaxProvision,11356000
+Beta,1.09

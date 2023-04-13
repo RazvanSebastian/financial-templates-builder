@@ -94,7 +94,7 @@ public class ExcelService {
 
         // Dividends
         initializeNetPayoutRatio(sheet);
-        initializeAverageIncrease(sheet);
+        initializeDividendAverageIncrease(sheet);
         initializeCagrDividend5Years(sheet);
         initializeChowder5Years(sheet);
     }

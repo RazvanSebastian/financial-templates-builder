@@ -235,7 +235,7 @@ public class ExcelValuationMetricsSheetInitializer {
         }
     }
 
-    public static void initializeAverageIncrease(XSSFSheet sheet) {
+    public static void initializeDividendAverageIncrease(XSSFSheet sheet) {
         XSSFCell cellValue = sheet.getRow(44).getCell(5);
         XSSFCell cellValuation = sheet.getRow(44).getCell(3);
 
