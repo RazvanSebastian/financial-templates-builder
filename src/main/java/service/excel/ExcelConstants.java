@@ -31,11 +31,13 @@ public class ExcelConstants {
     public static final Integer NON_CURRENT_ASSETS_ROW_INDEX = 30;
     public static final Integer CURRENT_LIABILITIES_ROW_INDEX = 35;
     public static final Integer NON_CURRENT_LIABILITIES_ROW_INDEX = 38;
+    public static final Integer LONG_TERM_DEBT_ROW_INDEX = 45;
+
 
     /**
      * Metrics row indexes
      */
-    public static final Integer ROIC_ROW_INDEX = 76;
-    public static final Integer PER_ROW_INDEX = 79;
-    public static final Integer PFCF_ASSETS_ROW_INDEX = 80;
+    public static final Integer ROIC_ROW_INDEX = 77;
+    public static final Integer PER_ROW_INDEX = 80;
+    public static final Integer PFCF_ASSETS_ROW_INDEX = 81;
 }

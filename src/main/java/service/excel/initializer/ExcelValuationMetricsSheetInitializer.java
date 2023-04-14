@@ -56,7 +56,7 @@ public class ExcelValuationMetricsSheetInitializer {
         }
     }
 
-    public static void initializeDebtToEquity(XSSFSheet sheet) {
+    public static void initializeLiabilitiesToEquity(XSSFSheet sheet) {
         XSSFCell cellValue = sheet.getRow(19).getCell(5);
         XSSFCell cellValuation = sheet.getRow(19).getCell(3);
         if (cellValue.getNumericCellValue() < 1) {
@@ -68,10 +68,22 @@ public class ExcelValuationMetricsSheetInitializer {
         }
     }
 
-    public static void initializeNumberOfSharesDecrease(XSSFSheet sheet) {
-        XSSFCell oldestYear = sheet.getRow(21).getCell(6);
-        XSSFCell newestYear = sheet.getRow(21).getCell(15);
+    public static void initializeLongDebtToEbidta(XSSFSheet sheet) {
+        XSSFCell cellValue = sheet.getRow(21).getCell(5);
         XSSFCell cellValuation = sheet.getRow(21).getCell(3);
+        if (cellValue.getNumericCellValue() < 3) {
+            Emoji.EXCELLENT.setEmoji(sheet, cellValuation);
+        } else if (cellValue.getNumericCellValue() >= 3 && cellValue.getNumericCellValue() <= 4) {
+            Emoji.OK.setEmoji(sheet, cellValuation);
+        } else {
+            Emoji.BAD.setEmoji(sheet, cellValuation);
+        }
+    }
+
+    public static void initializeNumberOfSharesDecrease(XSSFSheet sheet) {
+        XSSFCell oldestYear = sheet.getRow(23).getCell(6);
+        XSSFCell newestYear = sheet.getRow(23).getCell(15);
+        XSSFCell cellValuation = sheet.getRow(23).getCell(3);
         if (oldestYear.getNumericCellValue() > newestYear.getNumericCellValue()) {
             Emoji.EXCELLENT.setEmoji(sheet, cellValuation);
         } else {
@@ -80,10 +92,10 @@ public class ExcelValuationMetricsSheetInitializer {
     }
 
     public static void initializePER(XSSFSheet sheet, CompanySector companySector) {
-        XSSFCell cellValue = sheet.getRow(23).getCell(5);
-        XSSFCell cellValuation = sheet.getRow(23).getCell(3);
+        XSSFCell cellValue = sheet.getRow(25).getCell(5);
+        XSSFCell cellValuation = sheet.getRow(25).getCell(3);
 
-        XSSFCell cellConditionDetails = sheet.getRow(23).getCell(4);
+        XSSFCell cellConditionDetails = sheet.getRow(25).getCell(4);
         cellConditionDetails.setCellValue(String.format("sector median (%s)", companySector.getPER()));
 
         if (cellValue.getNumericCellValue() < companySector.getPER()) {
@@ -94,10 +106,10 @@ public class ExcelValuationMetricsSheetInitializer {
     }
 
     public static void initializePFCF(XSSFSheet sheet, CompanySector companySector) {
-        XSSFCell cellValue = sheet.getRow(25).getCell(5);
-        XSSFCell cellValuation = sheet.getRow(25).getCell(3);
+        XSSFCell cellValue = sheet.getRow(27).getCell(5);
+        XSSFCell cellValuation = sheet.getRow(27).getCell(3);
 
-        XSSFCell cellConditionDetails = sheet.getRow(25).getCell(4);
+        XSSFCell cellConditionDetails = sheet.getRow(27).getCell(4);
         cellConditionDetails.setCellValue(String.format("sector median (%s)", companySector.getPFCF()));
 
         if (cellValue.getNumericCellValue() < companySector.getPFCF()) {
@@ -108,8 +120,8 @@ public class ExcelValuationMetricsSheetInitializer {
     }
 
     public static void initializePEG(XSSFSheet sheet) {
-        XSSFCell cellValue = sheet.getRow(27).getCell(5);
-        XSSFCell cellValuation = sheet.getRow(27).getCell(3);
+        XSSFCell cellValue = sheet.getRow(29).getCell(5);
+        XSSFCell cellValuation = sheet.getRow(29).getCell(3);
 
         if (cellValue.getNumericCellValue() <= 1) {
             Emoji.EXCELLENT.setEmoji(sheet, cellValuation);
@@ -121,8 +133,8 @@ public class ExcelValuationMetricsSheetInitializer {
     }
 
     public static void initializeCagrFcf5Years(XSSFSheet sheet) {
-        XSSFCell cellValue = sheet.getRow(29).getCell(5);
-        XSSFCell cellValuation = sheet.getRow(29).getCell(3);
+        XSSFCell cellValue = sheet.getRow(31).getCell(5);
+        XSSFCell cellValuation = sheet.getRow(31).getCell(3);
 
         if (cellValue.getNumericCellValue() * 100 > 0) {
             Emoji.EXCELLENT.setEmoji(sheet, cellValuation);
@@ -132,17 +144,6 @@ public class ExcelValuationMetricsSheetInitializer {
     }
 
     public static void initializeCagrFcf10Years(XSSFSheet sheet) {
-        XSSFCell cellValue = sheet.getRow(30).getCell(5);
-        XSSFCell cellValuation = sheet.getRow(30).getCell(3);
-
-        if (cellValue.getNumericCellValue() * 100 > 0) {
-            Emoji.EXCELLENT.setEmoji(sheet, cellValuation);
-        } else {
-            Emoji.BAD.setEmoji(sheet, cellValuation);
-        }
-    }
-
-    public static void initializeCagrEbidta5Years(XSSFSheet sheet) {
         XSSFCell cellValue = sheet.getRow(32).getCell(5);
         XSSFCell cellValuation = sheet.getRow(32).getCell(3);
 
@@ -153,9 +154,9 @@ public class ExcelValuationMetricsSheetInitializer {
         }
     }
 
-    public static void initializeCagrEbidta10Years(XSSFSheet sheet) {
-        XSSFCell cellValue = sheet.getRow(33).getCell(5);
-        XSSFCell cellValuation = sheet.getRow(33).getCell(3);
+    public static void initializeCagrEbidta5Years(XSSFSheet sheet) {
+        XSSFCell cellValue = sheet.getRow(34).getCell(5);
+        XSSFCell cellValuation = sheet.getRow(34).getCell(3);
 
         if (cellValue.getNumericCellValue() * 100 > 0) {
             Emoji.EXCELLENT.setEmoji(sheet, cellValuation);
@@ -164,7 +165,7 @@ public class ExcelValuationMetricsSheetInitializer {
         }
     }
 
-    public static void initializeCagrNetIncome5Years(XSSFSheet sheet) {
+    public static void initializeCagrEbidta10Years(XSSFSheet sheet) {
         XSSFCell cellValue = sheet.getRow(35).getCell(5);
         XSSFCell cellValuation = sheet.getRow(35).getCell(3);
 
@@ -175,9 +176,9 @@ public class ExcelValuationMetricsSheetInitializer {
         }
     }
 
-    public static void initializeCagrNetIncome10Years(XSSFSheet sheet) {
-        XSSFCell cellValue = sheet.getRow(36).getCell(5);
-        XSSFCell cellValuation = sheet.getRow(36).getCell(3);
+    public static void initializeCagrNetIncome5Years(XSSFSheet sheet) {
+        XSSFCell cellValue = sheet.getRow(37).getCell(5);
+        XSSFCell cellValuation = sheet.getRow(37).getCell(3);
 
         if (cellValue.getNumericCellValue() * 100 > 0) {
             Emoji.EXCELLENT.setEmoji(sheet, cellValuation);
@@ -186,7 +187,7 @@ public class ExcelValuationMetricsSheetInitializer {
         }
     }
 
-    public static void initializeCagrRevenue5Years(XSSFSheet sheet) {
+    public static void initializeCagrNetIncome10Years(XSSFSheet sheet) {
         XSSFCell cellValue = sheet.getRow(38).getCell(5);
         XSSFCell cellValuation = sheet.getRow(38).getCell(3);
 
@@ -197,9 +198,20 @@ public class ExcelValuationMetricsSheetInitializer {
         }
     }
 
+    public static void initializeCagrRevenue5Years(XSSFSheet sheet) {
+        XSSFCell cellValue = sheet.getRow(40).getCell(5);
+        XSSFCell cellValuation = sheet.getRow(40).getCell(3);
+
+        if (cellValue.getNumericCellValue() * 100 > 0) {
+            Emoji.EXCELLENT.setEmoji(sheet, cellValuation);
+        } else {
+            Emoji.BAD.setEmoji(sheet, cellValuation);
+        }
+    }
+
     public static void initializeCagrRevenue10Years(XSSFSheet sheet) {
-        XSSFCell cellValue = sheet.getRow(39).getCell(5);
-        XSSFCell cellValuation = sheet.getRow(39).getCell(3);
+        XSSFCell cellValue = sheet.getRow(41).getCell(5);
+        XSSFCell cellValuation = sheet.getRow(41).getCell(3);
 
         if (cellValue.getNumericCellValue() * 100 > 0) {
             Emoji.EXCELLENT.setEmoji(sheet, cellValuation);
@@ -209,8 +221,8 @@ public class ExcelValuationMetricsSheetInitializer {
     }
 
     public static void initializeNetPayoutRatio(XSSFSheet sheet) {
-        XSSFCell cellValue = sheet.getRow(41).getCell(5);
-        XSSFCell cellValuation = sheet.getRow(41).getCell(3);
+        XSSFCell cellValue = sheet.getRow(43).getCell(5);
+        XSSFCell cellValuation = sheet.getRow(43).getCell(3);
 
         if (cellValue.getNumericCellValue() * 100 <= 50) {
             Emoji.EXCELLENT.setEmoji(sheet, cellValuation);
@@ -222,8 +234,8 @@ public class ExcelValuationMetricsSheetInitializer {
     }
 
     public static void initializeAverageIncrease(XSSFSheet sheet) {
-        XSSFCell cellValue = sheet.getRow(42).getCell(5);
-        XSSFCell cellValuation = sheet.getRow(42).getCell(3);
+        XSSFCell cellValue = sheet.getRow(44).getCell(5);
+        XSSFCell cellValuation = sheet.getRow(44).getCell(3);
 
         if (cellValue.getNumericCellValue() * 100 > 0) {
             Emoji.EXCELLENT.setEmoji(sheet, cellValuation);
@@ -233,8 +245,8 @@ public class ExcelValuationMetricsSheetInitializer {
     }
 
     public static void initializeCagrDividend5Years(XSSFSheet sheet) {
-        XSSFCell cellValue = sheet.getRow(43).getCell(5);
-        XSSFCell cellValuation = sheet.getRow(43).getCell(3);
+        XSSFCell cellValue = sheet.getRow(45).getCell(5);
+        XSSFCell cellValuation = sheet.getRow(45).getCell(3);
 
         if (cellValue.getNumericCellValue() * 100 > 0) {
             Emoji.EXCELLENT.setEmoji(sheet, cellValuation);
@@ -244,8 +256,8 @@ public class ExcelValuationMetricsSheetInitializer {
     }
 
     public static void initializeChowder5Years(XSSFSheet sheet) {
-        XSSFCell cellValue = sheet.getRow(44).getCell(5);
-        XSSFCell cellValuation = sheet.getRow(44).getCell(3);
+        XSSFCell cellValue = sheet.getRow(46).getCell(5);
+        XSSFCell cellValuation = sheet.getRow(46).getCell(3);
 
         if (cellValue.getNumericCellValue() * 100 >= 12) {
             Emoji.EXCELLENT.setEmoji(sheet, cellValuation);

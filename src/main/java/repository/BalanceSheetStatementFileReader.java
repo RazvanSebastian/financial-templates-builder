@@ -28,6 +28,7 @@ public class BalanceSheetStatementFileReader implements FileReader<BalanceSheetS
         BALANCE_SHEET_STATEMENT_INITIALIZERS.put(2, (values, balanceSheetStatement) -> balanceSheetStatement.setNonCurrentAssets(values));
         BALANCE_SHEET_STATEMENT_INITIALIZERS.put(3, (values, balanceSheetStatement) -> balanceSheetStatement.setCurrentLiabilities(values));
         BALANCE_SHEET_STATEMENT_INITIALIZERS.put(4, (values, balanceSheetStatement) -> balanceSheetStatement.setNonCurrentLiabilities(values));
+        BALANCE_SHEET_STATEMENT_INITIALIZERS.put(5, (values, balanceSheetStatement) -> balanceSheetStatement.setLongTermDebt(values));
     }
 
     @Override

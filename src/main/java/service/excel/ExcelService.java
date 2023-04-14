@@ -71,7 +71,8 @@ public class ExcelService {
 
         // Debt
         initializeCurrentRatio(sheet);
-        initializeDebtToEquity(sheet);
+        initializeLiabilitiesToEquity(sheet);
+        initializeLongDebtToEbidta(sheet);
 
         // Shares
         initializeNumberOfSharesDecrease(sheet);

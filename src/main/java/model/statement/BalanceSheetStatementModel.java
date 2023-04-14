@@ -8,6 +8,7 @@ public class BalanceSheetStatementModel {
     private List<String> nonCurrentAssets;
     private List<String> currentLiabilities;
     private List<String> nonCurrentLiabilities;
+    private List<String> longTermDebt;
 
     public List<String> getCurrentAssets() {
         return currentAssets;
@@ -39,5 +40,13 @@ public class BalanceSheetStatementModel {
 
     public void setNonCurrentLiabilities(List<String> nonCurrentLiabilities) {
         this.nonCurrentLiabilities = nonCurrentLiabilities;
+    }
+
+    public List<String> getLongTermDebt() {
+        return longTermDebt;
+    }
+
+    public void setLongTermDebt(List<String> longTermDebt) {
+        this.longTermDebt = longTermDebt;
     }
 }

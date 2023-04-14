@@ -27,6 +27,7 @@ public class ExcelFinancialSheetInitializers {
         initializeStatementRow(sheet, financialsModel.getBalanceSheetStatementModel().getNonCurrentAssets(), NON_CURRENT_ASSETS_ROW_INDEX);
         initializeStatementRow(sheet, financialsModel.getBalanceSheetStatementModel().getCurrentLiabilities(), CURRENT_LIABILITIES_ROW_INDEX);
         initializeStatementRow(sheet, financialsModel.getBalanceSheetStatementModel().getNonCurrentLiabilities(), NON_CURRENT_LIABILITIES_ROW_INDEX);
+        initializeStatementRow(sheet, financialsModel.getBalanceSheetStatementModel().getLongTermDebt(), LONG_TERM_DEBT_ROW_INDEX);
     }
 
     public static void initializeCashFlowStatementRows(XSSFSheet sheet, FinancialsModel financialsModel) {
@@ -66,7 +67,7 @@ public class ExcelFinancialSheetInitializers {
     }
 
     enum StatementCellLocation {
-        PEG(81, 2);
+        PEG(82, 2);
 
         private int row;
         private int col;
