@@ -8,7 +8,8 @@ public enum Company {
     MEDTRONIC("Medtronic", "MDT_Medtronic"),
     TYSON_FOODS("TysonFoods", "TSN_TysonFoods"),
     CELANESE("Celanese", "CE_Celanese"),
-    STANLEY_BLACK_DECKER("StanleyBlackAndDecker", "SWK_StanleyBlackAndDecker");
+    STANLEY_BLACK_DECKER("StanleyBlackAndDecker", "SWK_StanleyBlackAndDecker"),
+    UGI("UGI", "UGI_UGICorp");
 
     private final String directoryName;
     private final String title;

@@ -25,5 +25,8 @@ hs_err_pid*
 .classpath
 .project
 .settings/
-target/
+target/model
+target/repository
+target/service
+target/util
 .idea/

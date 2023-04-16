@@ -1,0 +1,7 @@
+MarketCap,X.XX
+CurrentLiabilities,XXXXX
+NonCurrentLiabilities,XXXXX
+InterestExpenses,XXXXX
+PretaxIncome,XXXX
+TaxProvision,XXXX
+Beta,X.XX
