@@ -6,7 +6,8 @@ public enum Company {
     UNION_PACIFIC("UnionPacific", "UNP_UnionPacific"),
     JOHNSON_AND_JOHNSON("JohnsonAndJohnson", "JNJ_JohnsonAndJohnson"),
     TYSON_FOODS("TysonFoods", "TSN_TysonFoods"),
-    CELANESE("Celanese", "CE_Celanese");
+    CELANESE("Celanese", "CE_Celanese"),
+    STANLEY_BLACK_DECKER("StanleyBlackAndDecker", "SWK_StanleyBlackAndDecker");
 
     private final String directoryName;
     private final String title;
