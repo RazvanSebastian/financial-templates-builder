@@ -9,7 +9,8 @@ public enum Company {
     TYSON_FOODS("TysonFoods", "TSN_TysonFoods"),
     CELANESE("Celanese", "CE_Celanese"),
     STANLEY_BLACK_DECKER("StanleyBlackAndDecker", "SWK_StanleyBlackAndDecker"),
-    UGI("UGI", "UGI_UGICorp");
+    UGI("UGI", "UGI_UGICorp"),
+    BRITISH_AMERICAN_TABACCO("BritishAmericanTabacco", "BTI_BritishAmericanTabacco");
 
     private final String directoryName;
     private final String title;

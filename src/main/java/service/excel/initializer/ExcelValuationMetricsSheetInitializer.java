@@ -224,9 +224,11 @@ public class ExcelValuationMetricsSheetInitializer {
         XSSFCell cellValue = sheet.getRow(43).getCell(5);
         XSSFCell cellValuation = sheet.getRow(43).getCell(3);
 
-        if (cellValue.getNumericCellValue() * 100 <= 50) {
+        float cellNumericValue = (float) (cellValue.getNumericCellValue() * 100);
+
+        if (cellNumericValue <= 50) {
             Emoji.EXCELLENT.setEmoji(sheet, cellValuation);
-        } else if (cellValue.getNumericCellValue() > 50 && cellValue.getNumericCellValue() <= 75) {
+        } else if (cellNumericValue > 50 && cellNumericValue <= 75) {
             Emoji.OK.setEmoji(sheet, cellValuation);
         } else {
             Emoji.BAD.setEmoji(sheet, cellValuation);
