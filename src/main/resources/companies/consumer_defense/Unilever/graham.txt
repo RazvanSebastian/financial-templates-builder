@@ -1,0 +1,2 @@
+EPS,2.83
+EpsGrowthRate,6.90

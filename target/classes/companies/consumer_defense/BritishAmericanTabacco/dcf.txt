@@ -1,4 +1,4 @@
-RevenueGrowth,3
+RevenueGrowth,0.5
 EbidtaMultiple,8.65
 EbidtaGrowthRate,5
 NumberOfShares,2267000000
