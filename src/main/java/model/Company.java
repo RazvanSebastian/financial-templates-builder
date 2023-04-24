@@ -13,7 +13,8 @@ public enum Company {
     STANLEY_BLACK_DECKER("StanleyBlackAndDecker", "SWK_StanleyBlackAndDecker"),
     UGI("UGI", "UGI_UGICorp"),
     BRITISH_AMERICAN_TABACCO("BritishAmericanTabacco", "BTI_BritishAmericanTabacco"),
-    UNILEVER("Unilever", "UL_Unilever");
+    UNILEVER("Unilever", "UL_Unilever"),
+    PROCTER_GAMBLE("ProcterGamble", "PG_Procter&Gamble");
 
     private final String directoryName;
     private final String title;
