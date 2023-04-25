@@ -14,7 +14,8 @@ public enum Company {
     UGI("UGI", "UGI_UGICorp"),
     BRITISH_AMERICAN_TABACCO("BritishAmericanTabacco", "BTI_BritishAmericanTabacco"),
     UNILEVER("Unilever", "UL_Unilever"),
-    PROCTER_GAMBLE("ProcterGamble", "PG_Procter&Gamble");
+    PROCTER_GAMBLE("ProcterGamble", "PG_Procter&Gamble"),
+    CISCO("Cisco", "CSCO_Cisco");
 
     private final String directoryName;
     private final String title;
