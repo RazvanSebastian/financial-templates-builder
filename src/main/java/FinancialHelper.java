@@ -43,6 +43,8 @@ public class FinancialHelper {
 //        excelService.initializeExcel(Company.MICROSOFT, CompanySector.TECH);
 //        excelService.initializeExcel(Company.UNILEVER, CompanySector.CONSUMER_DEFENSE);
 //        excelService.initializeExcel(Company.PROCTER_GAMBLE, CompanySector.CONSUMER_DEFENSE);
-        excelService.initializeExcel(Company.CISCO, CompanySector.COMMUNICATIONS);
+//        excelService.initializeExcel(Company.CISCO, CompanySector.COMMUNICATIONS);
+            excelService.initializeExcel(Company.ABBVIE, CompanySector.PHARMA);
+
     }
 }

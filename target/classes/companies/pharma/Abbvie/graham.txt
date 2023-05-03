@@ -1,0 +1,2 @@
+EPS,10.97
+EpsGrowthRate,0

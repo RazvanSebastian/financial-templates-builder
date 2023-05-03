@@ -1,21 +1,32 @@
 package model;
 
 public enum Company {
-
+    // Communication
     COMCAST("Comcast", "CMCA_Comcast"),
+    CISCO("Cisco", "CSCO_Cisco"),
+
+    // Industrial
     UNION_PACIFIC("UnionPacific", "UNP_UnionPacific"),
-    JOHNSON_AND_JOHNSON("JohnsonAndJohnson", "JNJ_JohnsonAndJohnson"),
-    ALPHABET("Alphabet", "GOOG_Alphabet"),
-    MICROSOFT("Microsoft", "MSFT_Microsoft"),
-    MEDTRONIC("Medtronic", "MDT_Medtronic"),
-    TYSON_FOODS("TysonFoods", "TSN_TysonFoods"),
     CELANESE("Celanese", "CE_Celanese"),
     STANLEY_BLACK_DECKER("StanleyBlackAndDecker", "SWK_StanleyBlackAndDecker"),
-    UGI("UGI", "UGI_UGICorp"),
+
+    // Medical / Pharma
+    JOHNSON_AND_JOHNSON("JohnsonAndJohnson", "JNJ_JohnsonAndJohnson"),
+    MEDTRONIC("Medtronic", "MDT_Medtronic"),
+    ABBVIE("Abbvie", "ABBV_Abbvie"),
+
+    // Tech
+    ALPHABET("Alphabet", "GOOG_Alphabet"),
+    MICROSOFT("Microsoft", "MSFT_Microsoft"),
+
+    // Consumer Defence
+    TYSON_FOODS("TysonFoods", "TSN_TysonFoods"),
     BRITISH_AMERICAN_TABACCO("BritishAmericanTabacco", "BTI_BritishAmericanTabacco"),
     UNILEVER("Unilever", "UL_Unilever"),
     PROCTER_GAMBLE("ProcterGamble", "PG_Procter&Gamble"),
-    CISCO("Cisco", "CSCO_Cisco");
+
+    // Utilities
+    UGI("UGI", "UGI_UGICorp");
 
     private final String directoryName;
     private final String title;
