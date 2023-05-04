@@ -30,8 +30,12 @@ public class DcfFileReader implements FileReader<DcfModel> {
         DCF_INITIALIZERS.put(3, (line, dcfModel) -> dcfModel.setEbidtaGrowthRate(line.split(DELIMITER)[1]));
         DCF_INITIALIZERS.put(4, (line, dcfModel) -> dcfModel.setNumberOfShares(line.split(DELIMITER)[1]));
         DCF_INITIALIZERS.put(5, (line, dcfModel) -> {
-            List<String> estimates = List.of(line.split(DELIMITER));
-            dcfModel.setRevenueEstimations(estimates.subList(1, estimates.size()));
+            List<String> revenueEstimates = List.of(line.split(DELIMITER));
+            dcfModel.setRevenueEstimations(revenueEstimates.subList(1, revenueEstimates.size()));
+        });
+        DCF_INITIALIZERS.put(6, (line, dcfModel) -> {
+            List<String> ebidtaEtimates = List.of(line.split(DELIMITER));
+            dcfModel.setEbidtaEstimations(ebidtaEtimates.subList(1, ebidtaEtimates.size()));
         });
     }
 

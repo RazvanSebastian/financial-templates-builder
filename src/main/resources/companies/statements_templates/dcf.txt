@@ -3,3 +3,4 @@ EbidtaMultiple,X.XX
 EbidtaGrowthRate,X.XX
 NumberOfShares,XXXXXXXX
 RevenueEstimations,X.XX,X.XX,X.XX
+EBIDTAEstimations,x,x,x

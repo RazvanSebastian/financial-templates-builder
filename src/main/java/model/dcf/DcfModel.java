@@ -9,6 +9,7 @@ public class DcfModel {
     private String ebidtaGrowthRate;
     private String numberOfShares;
     private List<String> revenueEstimations;
+    private List<String> ebidtaEstimations;
 
     public String getRevenueGrowth() {
         return revenueGrowth;
@@ -48,5 +49,13 @@ public class DcfModel {
 
     public void setRevenueEstimations(List<String> revenueEstimations) {
         this.revenueEstimations = revenueEstimations;
+    }
+
+    public List<String> getEbidtaEstimations() {
+        return ebidtaEstimations;
+    }
+
+    public void setEbidtaEstimations(List<String> ebidtaEstimations) {
+        this.ebidtaEstimations = ebidtaEstimations;
     }
 }

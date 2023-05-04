@@ -30,21 +30,21 @@ public class FinancialHelper {
 
         ExcelService excelService = new ExcelService(financialService);
 
-//        excelService.initializeExcel(Company.COMCAST, CompanySector.COMMUNICATIONS);
-//        excelService.initializeExcel(Company.UNION_PACIFIC, CompanySector.INDUSTRIAL);
-//        excelService.initializeExcel(Company.CELANESE, CompanySector.INDUSTRIAL);
-//        excelService.initializeExcel(Company.JOHNSON_AND_JOHNSON, CompanySector.PHARMA);
-//        excelService.initializeExcel(Company.MEDTRONIC, CompanySector.PHARMA);
-//        excelService.initializeExcel(Company.TYSON_FOODS, CompanySector.CONSUMER_DEFENSE);
-//        excelService.initializeExcel(Company.STANLEY_BLACK_DECKER, CompanySector.INDUSTRIAL);
-//        excelService.initializeExcel(Company.UGI, CompanySector.UTILITIES);
-//        excelService.initializeExcel(Company.BRITISH_AMERICAN_TABACCO, CompanySector.CONSUMER_DEFENSE);
-//        excelService.initializeExcel(Company.ALPHABET, CompanySector.TECH);
-//        excelService.initializeExcel(Company.MICROSOFT, CompanySector.TECH);
-//        excelService.initializeExcel(Company.UNILEVER, CompanySector.CONSUMER_DEFENSE);
-//        excelService.initializeExcel(Company.PROCTER_GAMBLE, CompanySector.CONSUMER_DEFENSE);
-//        excelService.initializeExcel(Company.CISCO, CompanySector.COMMUNICATIONS);
-//        excelService.initializeExcel(Company.ABBVIE, CompanySector.PHARMA);
+        excelService.initializeExcel(Company.COMCAST, CompanySector.COMMUNICATIONS);
+        excelService.initializeExcel(Company.UNION_PACIFIC, CompanySector.INDUSTRIAL);
+        excelService.initializeExcel(Company.CELANESE, CompanySector.INDUSTRIAL);
+        excelService.initializeExcel(Company.JOHNSON_AND_JOHNSON, CompanySector.PHARMA);
+        excelService.initializeExcel(Company.MEDTRONIC, CompanySector.PHARMA);
+        excelService.initializeExcel(Company.TYSON_FOODS, CompanySector.CONSUMER_DEFENSE);
+        excelService.initializeExcel(Company.STANLEY_BLACK_DECKER, CompanySector.INDUSTRIAL);
+        excelService.initializeExcel(Company.UGI, CompanySector.UTILITIES);
+        excelService.initializeExcel(Company.BRITISH_AMERICAN_TABACCO, CompanySector.CONSUMER_DEFENSE);
+        excelService.initializeExcel(Company.ALPHABET, CompanySector.TECH);
+        excelService.initializeExcel(Company.MICROSOFT, CompanySector.TECH);
+        excelService.initializeExcel(Company.UNILEVER, CompanySector.CONSUMER_DEFENSE);
+        excelService.initializeExcel(Company.PROCTER_GAMBLE, CompanySector.CONSUMER_DEFENSE);
+        excelService.initializeExcel(Company.CISCO, CompanySector.COMMUNICATIONS);
+        excelService.initializeExcel(Company.ABBVIE, CompanySector.PHARMA);
         excelService.initializeExcel(Company.TEXAS_INSTRUMENTS, CompanySector.TECH);
 
     }

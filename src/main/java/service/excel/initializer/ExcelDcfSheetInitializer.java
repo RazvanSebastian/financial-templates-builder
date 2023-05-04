@@ -16,6 +16,10 @@ public class ExcelDcfSheetInitializer {
         initializePercentageCellData(sheet, REVENUE_ESTIMATION_1, dcfModel.getRevenueEstimations().get(0));
         initializePercentageCellData(sheet, REVENUE_ESTIMATION_2, dcfModel.getRevenueEstimations().get(1));
         initializePercentageCellData(sheet, REVENUE_ESTIMATION_3, dcfModel.getRevenueEstimations().get(2));
+        initializeNumberCellData(sheet, EBIDTA_ESTIMATION_1, dcfModel.getEbidtaEstimations().get(0));
+        initializeNumberCellData(sheet, EBIDTA_ESTIMATION_2, dcfModel.getEbidtaEstimations().get(1));
+        initializeNumberCellData(sheet, EBIDTA_ESTIMATION_3, dcfModel.getEbidtaEstimations().get(2));
+
     }
 
     private static void initializeNumberCellData(XSSFSheet xssfSheet, DcfDataCellLocation cellLocation, String value) {
@@ -35,7 +39,10 @@ public class ExcelDcfSheetInitializer {
         NUMBER_OF_SHARES(10, 2),
         REVENUE_ESTIMATION_1(36, 2),
         REVENUE_ESTIMATION_2(36, 3),
-        REVENUE_ESTIMATION_3(36, 4);
+        REVENUE_ESTIMATION_3(36, 4),
+        EBIDTA_ESTIMATION_1(44, 2),
+        EBIDTA_ESTIMATION_2(44, 3),
+        EBIDTA_ESTIMATION_3(44, 4);
 
         private int row;
         private int col;
