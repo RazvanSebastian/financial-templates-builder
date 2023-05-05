@@ -14,6 +14,7 @@ public enum Company {
     JOHNSON_AND_JOHNSON("JohnsonAndJohnson", "JNJ_JohnsonAndJohnson"),
     MEDTRONIC("Medtronic", "MDT_Medtronic"),
     ABBVIE("Abbvie", "ABBV_Abbvie"),
+    CVS("Cvs", "CVS_CVS Health Corporation"),
 
     // Tech
     ALPHABET("Alphabet", "GOOG_Alphabet"),
