@@ -20,6 +20,7 @@ public enum Company {
     ALPHABET("Alphabet", "GOOG_Alphabet"),
     MICROSOFT("Microsoft", "MSFT_Microsoft"),
     TEXAS_INSTRUMENTS("TexasInstruments", "TXN_TexasInstruments"),
+    ADOBE("Adobe", "ADBE_Adobe"),
 
     // Consumer Defence
     TYSON_FOODS("TysonFoods", "TSN_TysonFoods"),
