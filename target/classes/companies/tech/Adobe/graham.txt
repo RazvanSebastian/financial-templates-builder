@@ -1,2 +1,2 @@
 EPS,15.40
-EpsGrowthRate,10
+EpsGrowthRate,12

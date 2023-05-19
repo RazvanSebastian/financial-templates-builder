@@ -15,6 +15,7 @@ public enum Company {
     MEDTRONIC("Medtronic", "MDT_Medtronic"),
     ABBVIE("Abbvie", "ABBV_Abbvie"),
     CVS("Cvs", "CVS_CVS Health Corporation"),
+    UnitedHealthCare("UnitedHealthcareGroup", "UNH_UnitedHealthcareGroup"),
 
     // Tech
     ALPHABET("Alphabet", "GOOG_Alphabet"),

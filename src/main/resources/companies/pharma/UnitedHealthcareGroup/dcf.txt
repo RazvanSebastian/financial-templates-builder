@@ -1,0 +1,6 @@
+RevenueGrowth,8
+EbidtaMultiple,9
+EbidtaGrowthRate,10
+NumberOfShares,932846602
+RevenueEstimations,12.22,7.06,8.78
+EBIDTAEstimations,36002,39597,43812
