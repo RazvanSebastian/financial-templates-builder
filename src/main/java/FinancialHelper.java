@@ -36,7 +36,7 @@ public class FinancialHelper {
     }
 
     private static void singleRun(ExcelService excelService) throws IOException {
-        excelService.initializeExcel(Company.UnitedHealthCare, CompanySector.PHARMA);
+        excelService.initializeExcel(Company.UNITED_PARCEL, CompanySector.INDUSTRIAL);
     }
 
     private static void runAll(ExcelService excelService) throws IOException {
@@ -48,6 +48,7 @@ public class FinancialHelper {
         excelService.initializeExcel(Company.UNION_PACIFIC, CompanySector.INDUSTRIAL);
         excelService.initializeExcel(Company.CELANESE, CompanySector.INDUSTRIAL);
         excelService.initializeExcel(Company.STANLEY_BLACK_DECKER, CompanySector.INDUSTRIAL);
+        excelService.initializeExcel(Company.UNITED_PARCEL, CompanySector.INDUSTRIAL);
 
         // Consumer defense
         excelService.initializeExcel(Company.TYSON_FOODS, CompanySector.CONSUMER_DEFENSE);

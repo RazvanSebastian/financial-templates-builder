@@ -1,0 +1,4 @@
+DividendPerShare,6.18
+ConservativeGrow,2.5
+NormalGrow,3
+HighGrow,3.5

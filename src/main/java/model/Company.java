@@ -9,6 +9,7 @@ public enum Company {
     UNION_PACIFIC("UnionPacific", "UNP_UnionPacific"),
     CELANESE("Celanese", "CE_Celanese"),
     STANLEY_BLACK_DECKER("StanleyBlackAndDecker", "SWK_StanleyBlackAndDecker"),
+    UNITED_PARCEL("UnitedParcel", "UPS_UnitedParcel"),
 
     // Medical / Pharma
     JOHNSON_AND_JOHNSON("JohnsonAndJohnson", "JNJ_JohnsonAndJohnson"),
